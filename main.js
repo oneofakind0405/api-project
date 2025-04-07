@@ -3,7 +3,6 @@ const chatbox = document.getElementById('chatbox');
 const userInput = document.getElementById('userInput');
 const sendBtn = document.getElementById('sendBtn');
 
-
 async function fetchGPTResponse(prompt) {
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -18,23 +17,27 @@ async function fetchGPTResponse(prompt) {
     }),
   });
 
-
   const data = await response.json();
   return data.choices[0].message.content;
 }
-
 
 sendBtn.addEventListener('click', async () => {
   const prompt = userInput.value;
   if (!prompt) return;
 
-
   chatbox.innerHTML += `<div class="text-right mb-2 text-blue-600">나: ${prompt}</div>`;
   userInput.value = '';
   chatbox.scrollTop = chatbox.scrollHeight;
 
-
   const reply = await fetchGPTResponse(prompt);
   chatbox.innerHTML += `<div class="text-left mb-2 text-gray-800">GPT: ${reply}</div>`;
   chatbox.scrollTop = chatbox.scrollHeight;
+});
+
+// 엔터 키로 전송 가능하게 설정
+userInput.addEventListener('keydown', async (event) => {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault(); // 줄바꿈 방지
+    sendBtn.click();
+  }
 });
