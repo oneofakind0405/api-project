@@ -1,0 +1,33 @@
+/* style.css */
+
+/* 채팅창 스크롤바 스타일 */
+#chatbox::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  #chatbox::-webkit-scrollbar-thumb {
+    background-color: #cbd5e0; /* Tailwind의 gray-400 정도 */
+    border-radius: 4px;
+  }
+  
+  #chatbox::-webkit-scrollbar-track {
+    background-color: #edf2f7; /* Tailwind의 gray-100 */
+  }
+  
+  /* 입력창 포커스 시 테두리 강조 */
+  #userInput:focus {
+    outline: none;
+    border-color: #3b82f6; /* Tailwind의 blue-500 */
+    box-shadow: 0 0 0 1px #3b82f6;
+  }
+  
+  /* 전송 버튼에 hover 효과 추가 */
+  #sendBtn:hover {
+    background-color: #2563eb; /* Tailwind의 blue-600 */
+  }
+  
+  /* 전송 버튼 클릭 시 약간 축소되는 효과 */
+  #sendBtn:active {
+    transform: scale(0.98);
+  }
+  
